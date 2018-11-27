@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 
+//		CarMaker KiaMaker = new KiaMaker(); // 객체생성
+//		CarMaker HyundaiMaker = new HyundaiMaker(); // 객체생성
+//		
+//		OrderManager manager = new OrderManager(); // 객체생성
+//		manager.setMaker(KiaMaker); // 관계설정
+//		manager.order(); // 로직호출
+ -->
+ 
+	<!-- id는 고유해야함,  -->
+	<bean id="KiaMaker" class="com.example.demo.ioc.step4.KiaMaker"></bean>
+	<bean id="HyundaiMaker" class="com.example.demo.ioc.step4.HyundaiMaker"></bean>
+	
+	<bean id="manager" class="com.example.demo.ioc.step4.OrderManager">
+		<!-- 밑에건 세터를 통한 객체생성, 이건 생성자를 통한 객체생성, ref가 파라미터가됨 -->
+		<constructor-arg ref="KiaMaker"></constructor-arg>
+	
+		<!-- setter() 대신 property name="" ref="id" -->
+		<!-- <property name="maker" ref="KiaMaker"></property> -->	
+	</bean>
+
+</beans>

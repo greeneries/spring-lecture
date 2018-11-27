@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 
+		Hello hello = new Hello();
+		
+		Advice advice = new MyAdvice(); 			
+-->
+
+<bean id="hello" class="com.example.demo.proxy.step7.Hello"></bean>
+
+<bean id="advice" class="com.example.demo.proxy.step7.MyAdvice"></bean>
+
+
+
+<!-- 
+	ProxyFactoryBean은 target 객체를 프록싱하는 객체를 빈 컨테이너에 등록한다.
+	ProxyFactory대신 ProxyFactoryBean을 쓰는 이유는 ProxyFactory객체는 프록시 객체를 만들기위한 1회용이라
+	빈 컨테이너에 보관하고 있을 이유가 없기 때문이다. 따라서 id도 proxy로 한다.
+ --> 
+ <!-- 
+ 		ProxyFactory factory = new ProxyFactory();
+		factory.setTarget(hello);
+		factory.addAdvice(advice);
+		
+		Hello proxy = (Hello) factory.getProxy();
+  -->
+<bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+	<property name="target" ref="hello"></property>
+	
+	<property name="interceptorNames"><!-- 얘가 받는게 문자열 배열이기 때문에 value로 받음 -->
+		<list>
+			<value>advice</value>
+		</list>
+	</property>
+</bean>
+
+</beans>

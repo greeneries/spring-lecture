@@ -1,0 +1,11 @@
+URL 풀패스
+URI 루트패스 제외한 나머지만 쓸때
+
+
+Handler Mapping : Controller의 리퀘스트매핑 어노테이션들을 리스트로 갖고있다가 디스패처의 리퀘스트가 오면 매칭시켜줌
+
+ModelAndView : 스프링이 미리 만들어놓은 데이터전송용 객체
+
+ViewResolver : 뷰문자열이 들어오면 맞는 jsp를 찾아줌
+
+
